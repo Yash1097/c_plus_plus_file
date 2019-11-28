@@ -1,69 +1,55 @@
 #include<iostream>
-#include<stdio.h>
-#include<string.h>
-
+#include<cstring>
 using namespace std;
-
-class bank
+class Bank
 {
-        int acno;
-        char nm[100], acctype[100];
-        float bal;  
-   public:
-        bank(int acc_no, char *name, char *acc_type, float balance)  //Parameterized Constructor
-        {
-                acno=acc_no;
-                strcpy(nm, name);
-                strcpy(acctype, acc_type);
-                bal=balance;
-        }
-        void deposit();
-        void withdraw();
-        void display();
+	string cname;
+	int ano;
+	char type;
+	float abal;
+	public:
+	Bank()
+	{
+		cname = " ";
+		ano = 0;
+		type = 's';
+		abal = 0.0f;
+	}
+	void createacc(string nm, int an,char t,float bal)
+	{
+		cname = nm;
+		ano = an;
+		type = t;
+		abal = bal;
+	}
+	void deposit(float bal)
+	{
+		abal+= bal;
+	}
+	void withdraw(float bal)
+	{
+		if((abal-bal)>0)
+			abal-=bal;
+		else
+			cout<<"Not enough balance";
+	}
+	void dispaly()
+	{
+		cout<<"Customer Name: "<<cname<<endl;
+		cout<<"Account Number: "<<ano<<endl;
+		cout<<"Type of Account: "<<type<<endl;
+		cout<<"Balance: "<<abal<<endl;
+	}
 };
-void bank::deposit()   //depositing an amount
-{
-        int damt1;
-        cout<<"\n Enter Deposit Amount = ";
-        cin>>damt1;
-        bal+=damt1;
-}
-void bank::withdraw()  //withdrawing an amount
-{
-        int wamt1;
-        cout<<"\n Enter Withdraw Amount = ";
-        cin>>wamt1;
-        if(wamt1>bal)
-                cout<<"\n Cannot Withdraw Amount";
-        bal-=wamt1;
-}
-void bank::display()  //displaying the details
-{
-        cout<<"\n ----------------------";
-        cout<<"\n Accout No. : "<<acno;
-        cout<<"\n Name : "<<nm;
-        cout<<"\n Account Type : "<<acctype;
-        cout<<"\n Balance : "<<bal<<endl;  
-}
 int main()
 {
-        int acc_no;
-        char name[100], acc_type[100];
-        float balance;
-        cout<<"\n Enter Details: \n";
-        cout<<"-----------------------";
-        cout<<"\n Accout No. ";
-        cin>>acc_no;
-        cout<<"\n Name : ";
-        cin>>name;
-        cout<<"\n Account Type : ";
-        cin>>acc_type;
-        cout<<"\n Balance : ";
-        cin>>balance;
-  
-        bank b1(acc_no, name, acc_type, balance);  //object is created
-        b1.deposit(); //
-        b1.withdraw(); // calling member functions
-        b1.display(); //
-        return 0;
+	Bank b1;
+	string name = "yash";
+	b1.createacc(name,2343,'s',5000);
+	b1.dispaly();
+	b1.deposit(3000);
+	b1.dispaly();
+	b1.withdraw(2000);
+	b1.dispaly();
+	return 0;
 }

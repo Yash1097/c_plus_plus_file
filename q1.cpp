@@ -1,66 +1,50 @@
 #include<iostream>
-#include<string>
+
 using namespace std;
 
-class Publication
-{
-private:
-    string title;
-    float price;
-public:
-    void getData()
-    {
-        cout<<"\nEnter Title: "; 
-        cin>>title;
-        cout<<"Enter Price: $"; 
-        cin>>price;
-    }
-
-    void putData()
-    { cout<<"\nTitle: "<<title<<"\nPrice: "<<price;    }
+class publication{
+	char title[20];
+	float price;
+	public:
+	void getdata(){
+		cout<< "Ente the title and the price for the books";
+		cin>>title>>price;
+	}
+	void putdata(){
+		cout<<"TITLE: "<<title<<endl<<"PRICE: "<<price<<endl;
+	}
 };
-
-//\////\////\////\////\////\////\////\////\////\////\////\//
-//\////\////\////\////\////\////\////\////\////\////\////\//
-
-class Book : public Publication
-{
-private:
-    int pages;
-public:
-    void getData()
-    { Publication::getData(); cout<<"Enter Pages: "; cin>>pages; }
-
-    void putData()
-    { Publication::putData(); cout<<"\nPages: "<<pages; }
+class books:public publication{
+	int pagecount;
+	public:
+	void getdata(){
+		publication :: getdata();
+		cout<<"ENete the page count of the book ";
+		cin>>pagecount;
+	}
+	void putdata(){
+		publication :: putdata();
+		cout<<"PAGE COUNT: "<<pagecount<<endl;
+	}
 };
-
-//\////\////\////\////\////\////\////\////\////\////\////\//
-//\////\////\////\////\////\////\////\////\////\////\////\//
-
-class Tape : public Publication
-{
-private:
-    float minutes;
-public:
-    void getData()
-    { Publication::getData(); cout<<"Enter Minutes: "; cin>>minutes; }
-
-    void putData()
-    { Publication::putData(); cout<<"\nMinutes: "<<minutes; }
+class tape:public publication{
+	float time;
+	public:
+	void getdata(){
+		cout<<"Enter the time for thr book to read ";
+		cin>>time;
+	}
+	void putdata(){
+		cout<<"TIME TO READ: "<<time;
+	}
 };
-
 int main()
 {
-    Book b; Tape t;
-    b.getData();
-    t.getData();
-
-    cout<<"\a"<<endl; // ’\a'produces the beep sound
-    b.putData();
-    cout<<endl;
-    t.putData();
-    cout<<endl;
-
-    return 0;
+	books b;
+	tape t;
+	b.getdata();
+	t.getdata();
+	b.putdata();
+	t.putdata();
+	return 0;
 }
